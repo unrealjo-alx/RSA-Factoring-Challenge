@@ -33,12 +33,14 @@ int main(int argc, char const *argv[])
 
 void factorize(char *string)
 {
-	u_int64_t random, number;
+	u_int64_t sqrt_number, number, i = 2;
 	char *end = NULL;
+
 	number = strtoull(string, &end, 10);
-	do
-	{
-		random = rand() % (u_int64_t)(sqrtl(number)) + 2;
-	} while (number % random != 0);
-	printf("%llu=%llux%llu\n", number, random, number / random);
+	sqrt_number = (u_int64_t)sqrtl(number);
+
+	while (i < sqrt_number && number % i != 0)
+		i++;
+
+	printf("%llu=%llu*%llu\n", number, i, number / i);
 }
