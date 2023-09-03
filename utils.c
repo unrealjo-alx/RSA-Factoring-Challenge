@@ -1,5 +1,4 @@
 #include <unistd.h>
-#include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include "utils.h"
@@ -31,7 +30,7 @@ void factorize(char *string)
 void factorize_prime(char *string)
 {
 
-	u_int64_t number, p = 1, q;
+	u_int64_t number, p = 3, q;
 	char *end = NULL;
 
 	number = strtoull(string, &end, 10);
@@ -50,12 +49,12 @@ void factorize_prime(char *string)
 		then q = 3 / 2 = 1
 		as a result p*q = 2 * 1 != number.
 		*/
-		if (q * p == number && is_prime(q))
+		if (q * p == number)
 		{
 			printf("%lu=%lu*%lu\n", number, q, p);
 			return;
 		}
-		p++;
+		p += 2;
 	}
 }
 /**
